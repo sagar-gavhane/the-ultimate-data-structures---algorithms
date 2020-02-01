@@ -1,7 +1,11 @@
 import _ from 'lodash'
 
-class Node {
+export class Node {
   constructor(value, next = null) {
+    if (!value) {
+      throw new Error('NoValueReceivedException')
+    }
+
     this.value = value
     this.next = next
   }
@@ -26,7 +30,7 @@ class LinkedList {
       this.last.next = node
       this.last = node
     }
-    this.size++;
+    this.size++
   }
 
   addFirst = (item) => {
@@ -39,11 +43,11 @@ class LinkedList {
       node.next = this.first
       this.first = node
     }
-    this.size++;
+    this.size++
   }
 
   indexOf = (item) => {
-    let index = 0;
+    let index = 0
     let current = this.first
 
     while (current !== null) {
@@ -51,15 +55,13 @@ class LinkedList {
         return index
       }
       current = current.next
-      index++;
+      index++
     }
 
-    return -1;
+    return -1
   }
 
-  contains = (item) => {
-    return this.indexOf(item) !== -1;
-  }
+  contains = (item) => this.indexOf(item) !== -1
 
   removeFirst = () => {
     if (this.isEmpty()) {
@@ -69,14 +71,14 @@ class LinkedList {
     if (this.first === this.last) {
       this.first = null
       this.last = null
-      this.size--;
+      this.size--
       return null
     }
 
     const second = this.first.next
     this.first.next = null
     this.first = second
-    this.size--;
+    this.size--
   }
 
   removeLast = () => {
@@ -116,7 +118,7 @@ class LinkedList {
       current = current.next
     }
 
-    return arr.toString().replace(/,/ig, '->')
+    return arr.toString().replace(/,/gi, '->')
   }
 }
 
