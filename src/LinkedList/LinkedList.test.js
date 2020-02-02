@@ -37,5 +37,13 @@ describe('LinkedList', () => {
     expect(linkedList.indexOf(44)).toBe(-1)
 
     expect(linkedList.toArray()).toBe('50->40->30')
+
+    linkedList.reverse()
+
+    expect(linkedList.first.value).toBe(30)
+    expect(linkedList.last.value).toBe(50)
+
+    const kthNode = linkedList.getKthNodeFromEnd(2)
+    expect(kthNode).toBe(40)
   })
 })

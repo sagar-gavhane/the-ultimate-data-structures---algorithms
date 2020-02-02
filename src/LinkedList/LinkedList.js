@@ -120,6 +120,46 @@ class LinkedList {
 
     return arr.toString().replace(/,/gi, '->')
   }
+
+  reverse = () => {
+    let previous = this.first
+    let current = this.first.next
+
+    while (current !== null) {
+      let next = current.next
+      current.next = previous
+      previous = current
+      current = next
+    }
+
+    this.last = this.first
+    this.last.next = null
+    this.first = previous
+  }
+
+  getKthNodeFromEnd = (k) => {
+    if (this.isEmpty()) {
+      throw new Error('list is empty')
+    }
+
+    let a = this.first
+    let b = this.first
+
+    for (let i = 0; i < k - 1; i++) {
+      b = b.next
+
+      if (b === null) {
+        throw new Error('k size is greater then linked list')
+      }
+    }
+
+    while (b !== this.last) {
+      a = a.next
+      b = b.next
+    }
+
+    return a.value
+  }
 }
 
 export default LinkedList
